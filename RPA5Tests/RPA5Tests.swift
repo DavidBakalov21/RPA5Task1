@@ -11,7 +11,7 @@ import XCTest
 
 final class HW5Tests: XCTestCase {
     lazy var bank = BankAccount()
-    //Deposit
+    // Deposit
     func testDepositNegativeValue() throws {
         bank.deposit(amount: -10)
         
@@ -27,7 +27,7 @@ final class HW5Tests: XCTestCase {
         XCTAssertEqual(bank.balance, 10)
     }
     
-    //Withdraw
+    // Withdraw
     func testWithdrawPositiveValueFromBiggerDeposit() throws {
         bank.deposit(amount: 100)
         let res = bank.withdraw(amount: 10)
@@ -52,7 +52,7 @@ final class HW5Tests: XCTestCase {
         XCTAssertEqual(res, false)
     }
     
-    //takeCredit
+    // takeCredit
     func testTakeCreditBiggerThenLimit() throws {
         let res = bank.takeCredit(amount: 100000)
         
@@ -78,14 +78,14 @@ final class HW5Tests: XCTestCase {
         XCTAssertEqual(bank.balance, 0)
         XCTAssertEqual(res, false)
     }
-    //payCredit
+    // payCredit
     func testPayCreditOutsideAccaptableRange() throws {
         _ = bank.takeCredit(amount: 100)
         let res = bank.payCredit(amount: 190)
         
         XCTAssertEqual(bank.transactionHistory.count, 1)
         XCTAssertEqual(bank.creditLoan, 100)
-        XCTAssertEqual(res,false)
+        XCTAssertEqual(res, false)
     }
     
     func testPayCreditAmountWithinAccaptableRange() throws {
@@ -103,7 +103,7 @@ final class HW5Tests: XCTestCase {
         XCTAssertEqual(bank.creditLoan, 100)
         XCTAssertEqual(res, false)
     }
-    //getTransactionHistory
+    // getTransactionHistory
     func testGetTransactionHistory() throws {
         bank.deposit(amount: 10)
         bank.deposit(amount: 10)
@@ -113,4 +113,3 @@ final class HW5Tests: XCTestCase {
         XCTAssertEqual(bank.getTransactionHistory().count, 5)
     }
 }
-
